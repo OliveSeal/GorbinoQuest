@@ -32,6 +32,8 @@ albedo_texture = ExtResource("2_p60p4")
 
 [sub_resource type="SphereMesh" id="SphereMesh_aob1o"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_sg7gi"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4ifv"]
 albedo_texture = ExtResource("3_0eyfl")
 
@@ -39,8 +41,6 @@ albedo_texture = ExtResource("3_0eyfl")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0hlt1"]
 albedo_texture = ExtResource("4_ylg28")
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_sg7gi"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -70,16 +70,6 @@ script = ExtResource("1_atlxc")
 material_override = SubResource("StandardMaterial3D_d6ehk")
 mesh = SubResource("SphereMesh_aob1o")
 
-[node name="Leg1" type="MeshInstance3D" parent="CharacterBody3D/Body"]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.280472, -0.260707, -0.374026)
-material_override = SubResource("StandardMaterial3D_n4ifv")
-mesh = SubResource("SphereMesh_erbwx")
-
-[node name="Leg2" type="MeshInstance3D" parent="CharacterBody3D/Body"]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.28, -0.261, -0.374)
-material_override = SubResource("StandardMaterial3D_0hlt1")
-mesh = SubResource("SphereMesh_erbwx")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 shape = SubResource("SphereShape3D_sg7gi")
@@ -88,3 +78,17 @@ shape = SubResource("SphereShape3D_sg7gi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.322046)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Neck"]
+
+[node name="Leg1" type="MeshInstance3D" parent="CharacterBody3D/Neck"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.280472, -0.412677, -0.136129)
+visible = false
+material_override = SubResource("StandardMaterial3D_n4ifv")
+mesh = SubResource("SphereMesh_erbwx")
+skeleton = NodePath("../../Body")
+
+[node name="Leg2" type="MeshInstance3D" parent="CharacterBody3D/Neck"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.28, -0.413, -0.136)
+visible = false
+material_override = SubResource("StandardMaterial3D_0hlt1")
+mesh = SubResource("SphereMesh_erbwx")
+skeleton = NodePath("../../Body")
