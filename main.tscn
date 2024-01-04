@@ -1,8 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://bd0i68dk30gdt"]
+[gd_scene load_steps=22 format=3 uid="uid://bd0i68dk30gdt"]
 
 [ext_resource type="Script" path="res://Movement.gd" id="1_atlxc"]
+[ext_resource type="Texture2D" uid="uid://b5kehi8vfmjk6" path="res://Textures/Ground/Ground037_1K-JPG_Color.jpg" id="1_uybjr"]
+[ext_resource type="Texture2D" uid="uid://btat15ckxs8qk" path="res://Textures/Ground/Ground037_1K-JPG_Displacement.jpg" id="2_aetq6"]
 [ext_resource type="Texture2D" uid="uid://b66vsmdiwauqs" path="res://GorbinoFace.png" id="2_p60p4"]
 [ext_resource type="Texture2D" uid="uid://m0lrp0m1s4o6" path="res://GorbinoLeft.png" id="3_0eyfl"]
+[ext_resource type="Texture2D" uid="uid://dted2igo44o21" path="res://Textures/Ground/Ground037_1K-JPG_NormalDX.jpg" id="3_mpa7h"]
+[ext_resource type="Texture2D" uid="uid://ducylo4hicfoi" path="res://Textures/Ground/Ground037_1K-JPG_Roughness.jpg" id="4_0a7td"]
 [ext_resource type="Texture2D" uid="uid://ptpgjog4s4mi" path="res://GorbinoRight.png" id="4_ylg28"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_51t1i"]
@@ -24,6 +28,16 @@ glow_normalized = true
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y2x7c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hbiqw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cnysu"]
+albedo_texture = ExtResource("1_uybjr")
+roughness = 0.25
+roughness_texture = ExtResource("4_0a7td")
+normal_enabled = true
+normal_texture = ExtResource("3_mpa7h")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_aetq6")
+uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2nkrf"]
 
@@ -48,8 +62,8 @@ albedo_texture = ExtResource("4_ylg28")
 environment = SubResource("Environment_4nqai")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.72993, 0.332304, 0)
-light_energy = 2.0
+transform = Transform3D(1, 0, 0, 0, -0.895626, 0.444807, 0, -0.444807, -0.895626, 3.72993, 0.332304, 0)
+light_energy = 0.5
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
@@ -61,6 +75,7 @@ shape = SubResource("BoxShape3D_hbiqw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_cnysu")
 mesh = SubResource("BoxMesh_2nkrf")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
