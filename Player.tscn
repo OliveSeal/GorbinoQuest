@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://c76abf64ynygm"]
+
+[ext_resource type="Texture2D" uid="uid://b66vsmdiwauqs" path="res://GorbinoFace.png" id="1_ry102"]
+[ext_resource type="Texture2D" uid="uid://dn7uc2wh8uvy7" path="res://GorbinoBack.png" id="2_6vwt3"]
+[ext_resource type="Texture2D" uid="uid://ptpgjog4s4mi" path="res://GorbinoRight.png" id="3_dljup"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3wid"]
+albedo_texture = ExtResource("1_ry102")
+uv1_scale = Vector3(1.75, 1.75, 1.75)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lr2d6"]
+lightmap_size_hint = Vector2i(17, 9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sa285"]
+albedo_texture = ExtResource("2_6vwt3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sc8c"]
+albedo_texture = ExtResource("3_dljup")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3otw"]
+albedo_texture = ExtResource("3_dljup")
+uv1_triplanar_sharpness = 4.75682
+uv2_triplanar_sharpness = 1.27456
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ym4ra"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.948223, 0.19297, 0.252262, -0.185681, 0.9812, -0.0526257, -0.257675, 0.00306072, 0.966227, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_a3wid")
+mesh = SubResource("SphereMesh_lr2d6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/MeshInstance3D"]
+transform = Transform3D(0.948223, 0.19297, 0.252262, -0.185681, 0.9812, -0.0526257, -0.257674, 0.00306069, 0.966227, -0.0369011, -0.00750963, -0.00981704)
+material_override = SubResource("StandardMaterial3D_sa285")
+mesh = SubResource("SphereMesh_lr2d6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.327831, -0.176454, -0.413875)
+material_override = SubResource("StandardMaterial3D_4sc8c")
+mesh = SubResource("SphereMesh_lr2d6")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.328528, -0.178113, 0.416711)
+material_override = SubResource("StandardMaterial3D_i3otw")
+mesh = SubResource("SphereMesh_lr2d6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+shape = SubResource("SphereShape3D_ym4ra")
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.146831, 0.346563, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Node3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+spring_length = 2.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="Node3D2/SpringArm3D"]
+transform = Transform3D(-0.999434, 0, -0.0336435, 0, 1, 0, 0.0336435, 0, -0.999434, 7.03129e-08, 0.203988, -1.60857)
+current = true
